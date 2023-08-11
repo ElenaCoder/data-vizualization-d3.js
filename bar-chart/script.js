@@ -67,4 +67,22 @@ fetch(
             .domain([d3.min(yearsDate), xMax])
             .range([0, width]);
         const xAxis = d3.axisBottom().scale(xScale);
+
+        // Set up yScale and yAxis
+        const GDP = data.data.map((item) => item[1]);
+        const gdpMax = d3.max(GDP);
+
+        const linearScale = d3
+            .scaleLinear()
+            .domain([0, gdpMax])
+            .range([0, height]);
+
+        const yAxisScale = d3
+            .scaleLinear()
+            .domain([0, gdpMax])
+            .range([height, 10]);
+
+        const yAxis = d3.axisLeft(yAxisScale);
+
+        const scaledGDP = GDP.map((item) => linearScale(item));
     });
