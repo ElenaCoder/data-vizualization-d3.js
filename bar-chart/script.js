@@ -99,4 +99,12 @@ fetch(
             .call(yAxis)
             .attr('id', 'y-axis')
             .attr('transform', 'translate(60, 0)');
+
+        // Append rotated text for Y-axis label
+        svgContainer
+            .append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('x', -200)
+            .attr('y', 80)
+            .text('Gross Domestic Product');
     });
