@@ -134,5 +134,53 @@ fetch(
             .attr('index', (d, i) => i)
             .style('fill', '#0B666A')
             .attr('transform', 'translate(60, 0)')
+            .on('mouseover', handleMouseOver)
 
+        // Function to handle mouseover event
+        function handleMouseOver(event, d) {
+            const index = this.getAttribute('index');
+            const xPosition = index * barWidth;
+            const yPosition = height - d;
+
+            showOverlay(d, xPosition, yPosition);
+            showTooltip(index);
+        }
+
+        // Function to show overlay
+        function showOverlay(height, x, y) {
+            overlay
+                .transition()
+                .duration(50)
+                .style('height', height + 'px')
+                .style('width', barWidth + 'px')
+                .style('opacity', 0.9)
+                .style('left', x + 'px')
+                .style('top', y + 'px')
+                .style('transform', 'translateX(60px)');
+        }
+
+        // Function to show tooltip
+        function showTooltip(index) {
+            const xPosition = index * barWidth + 30;
+            const yPosition = height - 100;
+
+            tooltip
+                .transition()
+                .duration(100)
+                .style('opacity', 0.9)
+            tooltip
+                .html(
+                    years[index] +
+                        '<br>' +
+                        '$' +
+                        GDP[index]
+                            .toFixed(1)
+                            .replace(/(\d)(?=(\d{3})+\.)/g, '$1,') +
+                        ' Billion',
+                )
+                .attr('data-date', data.data[index][0])
+                .style('left', xPosition + 'px')
+                .style('top', yPosition + 'px')
+                .style('transform', 'translateX(60px)');
+        }
     });
