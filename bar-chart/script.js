@@ -8,9 +8,14 @@ const tooltip = d3
     .attr('id', 'tooltip')
     .style('opacity', 0);
 
-    const overlay = d3
+const overlay = d3
     .select('.chartContainer')
     .append('div')
     .attr('class', 'overlay')
     .style('opacity', 0);
 
+const svgContainer = d3
+    .select('.chartContainer')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
