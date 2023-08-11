@@ -135,6 +135,10 @@ fetch(
             .style('fill', '#0B666A')
             .attr('transform', 'translate(60, 0)')
             .on('mouseover', handleMouseOver)
+            .on('mouseout', function () {
+                tooltip.transition().duration(100).style('opacity', 0);
+                overlay.transition().duration(100).style('opacity', 0);
+            });
 
         // Function to handle mouseover event
         function handleMouseOver(event, d) {
