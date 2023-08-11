@@ -85,4 +85,11 @@ fetch(
         const yAxis = d3.axisLeft(yAxisScale);
 
         const scaledGDP = GDP.map((item) => linearScale(item));
+
+        // Append x-axis
+        svgContainer
+            .append('g')
+            .call(xAxis)
+            .attr('id', 'x-axis')
+            .attr('transform', 'translate(60, 400)');
     });
