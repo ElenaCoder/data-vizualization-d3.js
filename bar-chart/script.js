@@ -58,4 +58,13 @@ fetch(
 
         const yearsDate = data.data.map((item) => new Date(item[0]));
 
+        // Set up xScale and xAxis
+        const xMax = new Date(d3.max(yearsDate));
+        xMax.setMonth(xMax.getMonth() + 3);
+
+        const xScale = d3
+            .scaleTime()
+            .domain([d3.min(yearsDate), xMax])
+            .range([0, width]);
+        const xAxis = d3.axisBottom().scale(xScale);
     });
