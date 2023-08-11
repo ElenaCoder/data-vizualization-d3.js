@@ -168,10 +168,8 @@ fetch(
             const xPosition = index * barWidth + 30;
             const yPosition = height - 100;
 
-            tooltip
-                .transition()
-                .duration(100)
-                .style('opacity', 0.9)
+            tooltip.transition().duration(100).style('opacity', 0.9);
+
             tooltip
                 .html(
                     years[index] +
