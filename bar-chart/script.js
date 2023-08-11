@@ -107,4 +107,14 @@ fetch(
             .attr('x', -200)
             .attr('y', 80)
             .text('Gross Domestic Product');
+
+        // Append text for more information
+        svgContainer
+            .append('text')
+            .attr('x', width / 2 + 90)
+            .attr('y', height + 50)
+            .text(
+                'More Information: http://www.bea.gov/national/pdf/nipaguid.pdf',
+            )
+            .attr('class', 'info');
     });
