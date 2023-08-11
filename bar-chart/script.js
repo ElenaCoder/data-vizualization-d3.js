@@ -92,4 +92,11 @@ fetch(
             .call(xAxis)
             .attr('id', 'x-axis')
             .attr('transform', 'translate(60, 400)');
+
+        // Append y-axis
+        svgContainer
+            .append('g')
+            .call(yAxis)
+            .attr('id', 'y-axis')
+            .attr('transform', 'translate(60, 0)');
     });
