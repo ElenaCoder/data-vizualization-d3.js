@@ -117,4 +117,22 @@ fetch(
                 'More Information: http://www.bea.gov/national/pdf/nipaguid.pdf',
             )
             .attr('class', 'info');
+
+        // Append rectangles
+        d3.select('svg')
+            .selectAll('rect')
+            .data(scaledGDP)
+            .enter()
+            .append('rect')
+            .attr('data-date', (d, i) => data.data[i][0])
+            .attr('data-gdp', (d, i) => data.data[i][1])
+            .attr('class', 'bar')
+            .attr('x', (d, i) => xScale(yearsDate[i]))
+            .attr('y', (d) => height - d)
+            .attr('width', barWidth)
+            .attr('height', (d) => d)
+            .attr('index', (d, i) => i)
+            .style('fill', '#0B666A')
+            .attr('transform', 'translate(60, 0)')
+
     });
