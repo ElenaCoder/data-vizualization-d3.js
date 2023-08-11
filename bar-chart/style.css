@@ -61,10 +61,11 @@ body {
   height: 50px;
   padding: 2px;
   font-size: 1em;
-  background: #b0deb0;
+  background: #F3AA60;
   box-shadow: 1px 1px 10px;
   border-radius: 2px;
   pointer-events: none;
+  font-weight: 600;
 }
 
 .overlay {
