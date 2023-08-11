@@ -29,8 +29,8 @@ body {
     justify-content: center;
 }
 .main .container {
-    height: 560px;
-    width: 900px;
+    height: 600px;
+    width: 940px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -71,4 +71,8 @@ body {
   position: absolute;
   background: #fff;
   pointer-events: none;
+}
+
+.info {
+  font-size: 0.9em;
 }
