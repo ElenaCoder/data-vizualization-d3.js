@@ -123,5 +123,6 @@ fetch(url)
                 )
                     .style('left', event.pageX + 5 + 'px')
                     .style('top', event.pageY - 38 + 'px');
-            });
+            })
+            .on('mouseout', () => div.style('opacity', 0));
     });
