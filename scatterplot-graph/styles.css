@@ -22,12 +22,14 @@ body {
 }
 
 div.tooltip {
-    background: rgb(163, 182, 206);
+    background: rgb(176, 194, 215);
     position: absolute;
     padding: 1rem;
     border: 0.1rem;
     border-radius: 0.5rem;
     pointer-events: none;
+    /* font-weight: 600; */
+    box-shadow: 2px 2px 3px rgb(0, 0, 0,0.5);
 }
 
 svg {
