@@ -104,5 +104,24 @@ fetch(url)
             .attr('cy', (d) => y(d.Time))
             .attr('data-xvalue', (d) => d.Year)
             .attr('data-yvalue', (d) => d.Time.toISOString())
-            .style('fill', (d) => color(d.Doping !== ''));
+            .style('fill', (d) => color(d.Doping !== ''))
+            .on('mouseover', function (event, d) {
+                div.style('opacity', 0.9);
+                div.attr('data-year', d.Year);
+                div.html(
+                    `<b>${d.Name}</b>` +
+                        ': ' +
+                        d.Nationality +
+                        '<br/>' +
+                        '<b>Year: </b>' +
+                        d.Year +
+                        ', <b>Time: </b>' +
+                        timeFormat(d.Time) +
+                        '<br/><br/>' +
+                        '<hr>' +
+                        (d.Doping ? '<br/>' + `<b>${d.Doping}</b>` : ''),
+                )
+                    .style('left', event.pageX + 5 + 'px')
+                    .style('top', event.pageY - 38 + 'px');
+            });
     });
