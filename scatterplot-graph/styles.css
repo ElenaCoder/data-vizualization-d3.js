@@ -28,3 +28,9 @@ div.tooltip {
     border-radius: 0.5rem;
     pointer-events: none;
 }
+
+.graph {
+    display: block;
+    margin: auto;
+    background-color: white;
+}

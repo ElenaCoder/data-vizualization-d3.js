@@ -33,3 +33,13 @@ const div = d3
     .attr('class', 'tooltip')
     .attr('id', 'tooltip')
     .style('opacity', 1);
+
+// Create an SVG element within the body to hold the graph
+const svg = d3
+    .select('body')
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
+    .attr('class', 'graph')
+    .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
