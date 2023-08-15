@@ -77,5 +77,19 @@ fetch(url)
             .attr('id', 'y-axis')
             .call(yAxis);
 
+        // Create label for x-axis
+        svg.append('text')
+            .attr('class', 'x-axis-label')
+            .attr('x', width)
+            .attr('y', 530)
+            .style('text-anchor', 'end')
+            .text('Year');
 
+        // Create label for y-axis
+        svg.append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('x', -160)
+            .attr('y', -44)
+            .style('font-size', 18)
+            .text('Time in Minutes');
     });
