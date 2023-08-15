@@ -5,9 +5,9 @@ const url =
 // Define the chart margin and dimensions
 const margin = {
     top: 60,
-    right: 30,
-    bottom: 30,
-    left: 60,
+    right: 40,
+    bottom: 60,
+    left: 80,
 };
 const width = 920 - margin.right - margin.left;
 const height = 630 - margin.top - margin.bottom;
@@ -43,3 +43,17 @@ const svg = d3
     .attr('class', 'graph')
     .append('g')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+// Fetch and process data
+fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+        // Data preprocessing here
+        data.forEach((d) => {
+            d.Place = Number(d.Place);
+            const [minutes, seconds] = d.Time.split(':');
+            d.Time = new Date(1970, 0, 1, 0, minutes, seconds);
+        });
+
+
+    });
