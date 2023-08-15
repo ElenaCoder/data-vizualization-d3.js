@@ -15,3 +15,9 @@ const height = 630 - margin.top - margin.bottom;
 // Create x and y scales
 const x = d3.scaleLinear().range([0, width]); // Linear scale for x-axis
 const y = d3.scaleTime().range([0, height]); // Time scale for y-axis
+
+// Define color scale for data categories
+const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+// Format time values as 'MM:SS' using timeFormat
+const timeFormat = d3.timeFormat('%M:%S');
