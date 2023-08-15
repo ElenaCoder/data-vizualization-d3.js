@@ -6,7 +6,7 @@ const url =
 const margin = {
     top: 60,
     right: 40,
-    bottom: 60,
+    bottom: 80,
     left: 80,
 };
 const width = 920 - margin.right - margin.left;
@@ -63,4 +63,19 @@ fetch(url)
         const timeMin = d3.min(data, (d) => d.Time);
         const timeMax = d3.max(data, (d) => d.Time);
         y.domain([timeMin, timeMax]);
+
+        // Create x-axis
+        svg.append('g')
+            .attr('class', 'x axis')
+            .attr('id', 'x-axis')
+            .attr('transform', 'translate(0,' + height + ')')
+            .call(xAxis);
+
+        // Create y-axis
+        svg.append('g')
+            .attr('class', 'y axis')
+            .attr('id', 'y-axis')
+            .call(yAxis);
+
+
     });
