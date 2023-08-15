@@ -92,4 +92,17 @@ fetch(url)
             .attr('y', -44)
             .style('font-size', 18)
             .text('Time in Minutes');
+
+        // Create data points (circles)
+        svg.selectAll('.dot')
+            .data(data)
+            .enter()
+            .append('circle')
+            .attr('class', 'dot')
+            .attr('r', 6)
+            .attr('cx', (d) => x(d.Year))
+            .attr('cy', (d) => y(d.Time))
+            .attr('data-xvalue', (d) => d.Year)
+            .attr('data-yvalue', (d) => d.Time.toISOString())
+            .style('fill', (d) => color(d.Doping !== ''));
     });
