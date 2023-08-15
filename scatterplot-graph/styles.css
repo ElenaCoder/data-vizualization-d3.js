@@ -13,8 +13,18 @@ html {
 }
 
 body {
-    font: 10px sans-serif;
+    font: 0.8rem sans-serif;
     width: 100%;
     min-height: 100vh;
     background-color: rgb(236, 236, 235);
+    /* display: flex; */
+}
+
+div.tooltip {
+    background: rgb(163, 182, 206);
+    position: absolute;
+    padding: 1rem;
+    border: 0.1rem;
+    border-radius: 0.5rem;
+    pointer-events: none;
 }

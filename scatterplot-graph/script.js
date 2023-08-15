@@ -25,3 +25,11 @@ const timeFormat = d3.timeFormat('%M:%S');
 // Create x-axis and y-axis with proper formatting
 const xAxis = d3.axisBottom(x).tickFormat(d3.format('d')); // Bottom x-axis with number formatting
 const yAxis = d3.axisLeft(y).tickFormat(timeFormat); // Left y-axis with time formatting
+
+// Create a tooltip div
+const div = d3
+    .select('body')
+    .append('div')
+    .attr('class', 'tooltip')
+    .attr('id', 'tooltip')
+    .style('opacity', 1);
