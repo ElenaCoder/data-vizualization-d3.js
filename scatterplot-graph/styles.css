@@ -41,3 +41,8 @@ svg {
     margin: auto;
     background-color: white;
 }
+
+.dot {
+    stroke: #000;
+    opacity: 0.8;
+  }
