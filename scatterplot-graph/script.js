@@ -125,4 +125,15 @@ fetch(url)
                     .style('top', event.pageY - 38 + 'px');
             })
             .on('mouseout', () => div.style('opacity', 0));
+
+        // Create title
+        svg.append('text')
+            .attr('id', 'title')
+            .attr('x', width / 2)
+            .attr('y', 0 - margin.top / 2)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '30px')
+            .text('Doping in Professional Bicycle Racing');
+
+
     });
