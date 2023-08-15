@@ -21,3 +21,7 @@ const color = d3.scaleOrdinal(d3.schemeCategory10);
 
 // Format time values as 'MM:SS' using timeFormat
 const timeFormat = d3.timeFormat('%M:%S');
+
+// Create x-axis and y-axis with proper formatting
+const xAxis = d3.axisBottom(x).tickFormat(d3.format('d')); // Bottom x-axis with number formatting
+const yAxis = d3.axisLeft(y).tickFormat(timeFormat); // Left y-axis with time formatting
