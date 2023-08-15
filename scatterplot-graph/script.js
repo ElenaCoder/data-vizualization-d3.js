@@ -55,5 +55,12 @@ fetch(url)
             d.Time = new Date(1970, 0, 1, 0, minutes, seconds);
         });
 
+        // Set up x and y domains
+        const domainMax = d3.max(data, (d) => d.Year + 1);
+        const domainMin = d3.min(data, (d) => d.Year - 1);
+        x.domain([domainMin, domainMax]);
 
+        const timeMin = d3.min(data, (d) => d.Time);
+        const timeMax = d3.max(data, (d) => d.Time);
+        y.domain([timeMin, timeMax]);
     });
