@@ -135,5 +135,11 @@ fetch(url)
             .style('font-size', '30px')
             .text('Doping in Professional Bicycle Racing');
 
-
+        // Create subtitle
+        svg.append('text')
+            .attr('x', width / 2)
+            .attr('y', 0 - margin.top / 2 + 25)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '20px')
+            .text("35 Fastest times up Alpe d'Huez");
     });
