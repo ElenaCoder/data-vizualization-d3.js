@@ -181,4 +181,5 @@ fetch(url)
             .text((d) =>
                 d ? 'Riders with doping allegations' : 'No doping allegations',
             );
-    });
+    })
+    .catch(err => console.log(err));
