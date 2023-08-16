@@ -17,7 +17,9 @@ const x = d3.scaleLinear().range([0, width]); // Linear scale for x-axis
 const y = d3.scaleTime().range([0, height]); // Time scale for y-axis
 
 // Define color scale for data categories
-const color = d3.scaleOrdinal(d3.schemeCategory10).range(['#F24C3D', '#22A699']);
+const color = d3
+    .scaleOrdinal(d3.schemeCategory10)
+    .range(['#F24C3D', '#22A699']);
 
 // Format time values as 'MM:SS' using timeFormat
 const timeFormat = d3.timeFormat('%M:%S');
@@ -83,14 +85,17 @@ fetch(url)
             .attr('x', width)
             .attr('y', 530)
             .style('text-anchor', 'end')
+            .attr('font-size', '1.1rem')
+            .style('font-weight', '600')
             .text('Year');
 
         // Create label for y-axis
         svg.append('text')
             .attr('transform', 'rotate(-90)')
             .attr('x', -160)
-            .attr('y', -44)
-            .style('font-size', 18)
+            .attr('y', -50)
+            .style('font-size', '1.1rem')
+            .style('font-weight', '600')
             .text('Time in Minutes');
 
         // Create data points (circles)
