@@ -48,3 +48,11 @@ svg {
     stroke: #000;
     opacity: 0.8;
   }
+
+#legend {
+    font-size: 1rem;
+}
+
+.tick{
+    font-size: 0.8rem;
+}
