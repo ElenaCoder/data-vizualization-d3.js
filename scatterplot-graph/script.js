@@ -142,4 +142,38 @@ fetch(url)
             .attr('text-anchor', 'middle')
             .style('font-size', '20px')
             .text("35 Fastest times up Alpe d'Huez");
+
+        // Create a container for the legend
+        const legendContainer = svg.append('g').attr('id', 'legend');
+
+        // Bind data to the legend container and create groups for each item
+        const legend = legendContainer
+            .selectAll('#legend')
+            .data(color.domain())
+            .enter()
+            .append('g')
+            .attr('class', 'legend-label')
+            .attr(
+                'transform',
+                (d, i) => 'translate(0,' + (height / 2 - i * 20) + ')',
+            );
+
+        // Create rectangles for each legend item
+        legend
+            .append('rect')
+            .attr('x', width - 18)
+            .attr('width', 18)
+            .attr('height', 18)
+            .style('fill', color);
+
+        // Create text labels for each legend item
+        legend
+            .append('text')
+            .attr('x', width - 24)
+            .attr('y', 9)
+            .attr('dy', '.35em')
+            .style('text-anchor', 'end')
+            .text((d) =>
+                d ? 'Riders with doping allegations' : 'No doping allegations',
+            );
     });
