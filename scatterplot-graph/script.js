@@ -34,7 +34,7 @@ const div = d3
     .append('div')
     .attr('class', 'tooltip')
     .attr('id', 'tooltip')
-    .style('opacity', 1);
+    .style('opacity', 0);
 
 // Create an SVG element within the body to hold the graph
 const svg = d3
