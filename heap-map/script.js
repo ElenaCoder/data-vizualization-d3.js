@@ -205,5 +205,25 @@ function callback(data) {
         })
         .tickSize(10, 1);
 
-
+    svg.append('g')
+        .classed('y-axis', true)
+        .attr('id', 'y-axis')
+        .attr(
+            'transform',
+            'translate(' + padding.left + ',' + padding.top + ')',
+        )
+        .call(yAxis)
+        .append('text')
+        .text('Months')
+        .style('text-anchor', 'end')
+        .attr(
+            'transform',
+            'translate(' +
+                -7 * fontSize +
+                ',' +
+                height / 2 +
+                ')' +
+                'rotate(-90)',
+        )
+        .attr('fill', 'black');
 }
