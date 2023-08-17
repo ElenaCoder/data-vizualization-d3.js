@@ -139,4 +139,22 @@ function callback(data) {
 
     // Adjust month indices to be zero-based
     data.monthlyVariance.forEach((val) => (val.month -= 1));
+
+    // Create a section element to contain the visualization
+    const section = d3.select('body').append('section');
+
+    // Add heading elements for title and description
+    const heading = section.append('heading');
+    heading
+        .append('h1')
+        .attr('id', 'title')
+        .text('Monthly Global Land-Surface Temperature');
+    heading
+        .append('h3')
+        .attr('id', 'description')
+        .html(
+            `${data.monthlyVariance[0].year} - ${
+                data.monthlyVariance[data.monthlyVariance.length - 1].year
+            }: base temperature ${data.baseTemperature}&#8451;`,
+        );
 }
