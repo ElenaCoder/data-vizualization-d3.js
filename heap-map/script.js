@@ -269,5 +269,87 @@ function callback(data) {
         .attr('transform', 'translate(' + width / 2 + ',' + 3 * fontSize + ')')
         .attr('fill', 'black');
 
+    // Get the legend colors in reverse order
+    const legendColors = colorbrewer.RdYlBu[11].reverse();
+    const legendWidth = 600;
+    const legendHeight = 300 / legendColors.length;
 
+    // Calculate the variance, minimum temperature, and maximum temperature
+    const variance = data.monthlyVariance.map((val) => val.variance);
+    const minTemp = data.baseTemperature + Math.min(...variance);
+    const maxTemp = data.baseTemperature + Math.max(...variance);
+
+    // Create a threshold scale for the legend colors
+    const legendThreshold = d3
+        .scaleThreshold()
+        .domain(
+            ((min, max, count) => {
+                const array = [];
+                const step = (max - min) / count;
+                let base = min;
+                for (let i = 1; i < count; i++) {
+                    array.push(base + i * step);
+                }
+                return array;
+            })(minTemp, maxTemp, legendColors.length),
+        )
+        .range(legendColors);
+
+    // Create a linear scale for the legend x-axis
+    const legendX = d3
+        .scaleLinear()
+        .domain([minTemp, maxTemp])
+        .range([0, legendWidth]);
+
+    // Create the x-axis for the legend
+    const legendXAxis = d3
+        .axisBottom()
+        .scale(legendX)
+        .tickSize(10)
+        .tickValues(legendThreshold.domain())
+        .tickFormat(d3.format('.1f'));
+
+    // Append a group for the legend
+    const legend = svg
+        .append('g')
+        .classed('legend', true)
+        .attr('id', 'legend')
+        .attr(
+            'transform',
+            `translate(${padding.left},${
+                padding.top + height + padding.bottom - 2 * legendHeight
+            })`,
+        );
+
+    // Add rectangles for each color in the legend
+    legend
+        .append('g')
+        .selectAll('rect')
+        .data(
+            legendThreshold.range().map((color) => {
+                let d = legendThreshold.invertExtent(color);
+                if (d[0] === null) {
+                    d[0] = legendX.domain()[0];
+                }
+                if (d[1] === null) {
+                    d[1] = legendX.domain()[1];
+                }
+                return d;
+            }),
+        )
+        .enter()
+        .append('rect')
+        .style('fill', (d) => legendThreshold(d[0]))
+        .attr('x', (d) => legendX(d[0]))
+        .attr('y', 0)
+        .attr('width', (d) =>
+            d[0] && d[1] ? legendX(d[1]) - legendX(d[0]) : legendX(null),
+        )
+        .attr('height', legendHeight);
+
+    // Add the x-axis to the legend
+    legend
+        .append('g')
+        .attr('transform', `translate(0,${legendHeight})`)
+        .call(legendXAxis);
 }
