@@ -157,4 +157,24 @@ function callback(data) {
                 data.monthlyVariance[data.monthlyVariance.length - 1].year
             }: base temperature ${data.baseTemperature}&#8451;`,
         );
+
+    // Define dimensions, padding, and tooltip
+    const fontSize = 16;
+    const width = 5 * Math.ceil(data.monthlyVariance.length / 12);
+    const height = 33 * 12;
+    const padding = {
+        left: 9 * fontSize,
+        right: 9 * fontSize,
+        top: 1 * fontSize,
+        bottom: 8 * fontSize,
+    };
+    const tooltip = d3
+        .tip()
+        .attr('class', 'd3-tip')
+        .attr('id', 'tooltip')
+        .html(function (d) {
+            return d;
+        })
+        .direction('n')
+        .offset([-10, 0]);
 }
