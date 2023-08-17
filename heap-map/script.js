@@ -136,4 +136,7 @@ d3.json(url)
 // Callback function to process and visualize the data
 function callback(data) {
     console.log('data: ', data);
+
+    // Adjust month indices to be zero-based
+    data.monthlyVariance.forEach((val) => (val.month -= 1));
 }
