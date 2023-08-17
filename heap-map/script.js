@@ -215,11 +215,12 @@ function callback(data) {
         .call(yAxis)
         .append('text')
         .text('Months')
-        .style('text-anchor', 'end')
+        .style('font-size', '1.2rem')
+        .style('text-anchor', 'middle')
         .attr(
             'transform',
             'translate(' +
-                -7 * fontSize +
+                -5 * fontSize +
                 ',' +
                 height / 2 +
                 ')' +
@@ -263,7 +264,10 @@ function callback(data) {
         .call(xAxis)
         .append('text')
         .text('Years')
+        .style('font-size', '1.2rem')
         .style('text-anchor', 'middle')
         .attr('transform', 'translate(' + width / 2 + ',' + 3 * fontSize + ')')
         .attr('fill', 'black');
+
+
 }

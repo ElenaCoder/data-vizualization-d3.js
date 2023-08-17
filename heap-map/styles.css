@@ -22,4 +22,14 @@ section {
     margin-right: auto;
 }
 
+.d3-tip {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+  }
 
+  .tick {
+    font-size: 0.8rem;
+  }
