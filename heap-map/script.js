@@ -127,3 +127,13 @@ var colorbrewer = {
         ],
     },
 };
+
+// Fetch the data from the URL and call the callback function
+d3.json(url)
+    .then((data) => callback(data))
+    .catch((err) => console.log(err));
+
+// Callback function to process and visualize the data
+function callback(data) {
+    console.log('data: ', data);
+}
