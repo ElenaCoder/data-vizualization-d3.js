@@ -252,4 +252,18 @@ function callback(data) {
         })
         .tickSize(10, 1);
 
+    // Added X-axis to the SVG with Year Labels
+    svg.append('g')
+        .classed('x-axis', true)
+        .attr('id', 'x-axis')
+        .attr(
+            'transform',
+            'translate(' + padding.left + ',' + (height + padding.top) + ')',
+        )
+        .call(xAxis)
+        .append('text')
+        .text('Years')
+        .style('text-anchor', 'middle')
+        .attr('transform', 'translate(' + width / 2 + ',' + 3 * fontSize + ')')
+        .attr('fill', 'black');
 }
