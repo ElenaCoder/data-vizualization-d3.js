@@ -184,4 +184,26 @@ function callback(data) {
         .attr('width', width + padding.left + padding.right)
         .attr('height', height + padding.top + padding.bottom)
         .call(tooltip);
+
+    // Create y-axis scale
+    const yScale = d3
+        .scaleBand()
+        .domain(data.monthlyVariance.map((val) => val.month))
+        .rangeRound([0, height])
+        .padding(0);
+
+    // Create y-axis
+    const yAxis = d3
+        .axisLeft()
+        .scale(yScale)
+        .tickValues(yScale.domain())
+        .tickFormat((month) => {
+            const date = new Date(0);
+            date.setUTCMonth(month);
+            const format = d3.utcFormat('%B');
+            return format(date);
+        })
+        .tickSize(10, 1);
+
+
 }
