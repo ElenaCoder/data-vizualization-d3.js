@@ -177,4 +177,11 @@ function callback(data) {
         })
         .direction('n')
         .offset([-10, 0]);
+
+    // Create the SVG container and apply the tooltip
+    const svg = section
+        .append('svg')
+        .attr('width', width + padding.left + padding.right)
+        .attr('height', height + padding.top + padding.bottom)
+        .call(tooltip);
 }
