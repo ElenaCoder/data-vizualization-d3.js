@@ -204,7 +204,7 @@ function callback(data) {
             return format(date);
         })
         .tickSize(10, 1);
-
+    // Added Y-axis to the SVG with Month Labels
     svg.append('g')
         .classed('y-axis', true)
         .attr('id', 'y-axis')
@@ -226,4 +226,30 @@ function callback(data) {
                 'rotate(-90)',
         )
         .attr('fill', 'black');
+
+    // Create x-axis scale
+    const xScale = d3
+        .scaleBand()
+        .domain(data.monthlyVariance.map((val) => val.year))
+        .range([0, width])
+        .padding(0);
+
+    // Create x-axis
+    const xAxis = d3
+        .axisBottom()
+        .scale(xScale)
+        .tickValues(
+            xScale.domain().filter(function (year) {
+                // set ticks to years divisible by 10
+                return year % 10 === 0;
+            }),
+        )
+        .tickFormat(function (year) {
+            var date = new Date(0);
+            date.setUTCFullYear(year);
+            var format = d3.utcFormat('%Y');
+            return format(date);
+        })
+        .tickSize(10, 1);
+
 }
