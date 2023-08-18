@@ -14,7 +14,7 @@ html {
 body {
     text-align: center;
     margin-top: 40px;
-    background-color: #F4F2DE;
+    background-color: #f4f2de;
 }
 
 section {
@@ -34,12 +34,8 @@ section {
     color: white;
     text-align: center;
     padding: 0.5em;
-  }
+}
 
-  .tick {
+.tick {
     font-size: 0.8rem;
-  }
-
-rect.cell {
-    border: 1px solid black;
-  }
+}
