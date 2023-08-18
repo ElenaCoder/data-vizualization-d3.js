@@ -160,7 +160,7 @@ function callback(data) {
 
     // Define dimensions, padding, and tooltip
     const fontSize = 16;
-    const width = 5 * Math.ceil(data.monthlyVariance.length / 12);
+    const width = 3.5 * Math.ceil(data.monthlyVariance.length / 12);
     const height = 33 * 12;
     const padding = {
         left: 9 * fontSize,
