@@ -1,6 +1,6 @@
-const EDUCATION_FILE =
+const EDUCATION_DATA =
     'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json';
-const COUNTY_FILE =
+const COUNTY_DATA =
     'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json';
 
 const body = d3.select('body');
@@ -82,3 +82,10 @@ legend.call(
 )
     .select('.domain')
     .remove();
+
+// Load data and create visualization
+Promise.all([d3.json(COUNTY_DATA), d3.json(EDUCATION_DATA)])
+    .then(data => createChoroplethMap(data[0], data[1]))
+    .catch(err => console.log(err));
+
+function createChoroplethMap(us, education) {}
