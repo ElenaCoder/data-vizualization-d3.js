@@ -50,3 +50,35 @@ const x = d3.scaleLinear().domain([2.6, 75.1]).rangeRound([600, 860]);
 const color = d3.scaleThreshold()
     .domain(d3.range(2.6, 75.1, (75.1 - 2.6) / 8))
     .range(d3.schemeGreens[9]);
+
+// Legend setup
+const legend = svg.append('g')
+    .attr('class', 'key')
+    .attr('id', 'legend')
+    .attr('transform', 'translate(0,40)');
+
+legend.selectAll('rect')
+    .data(color.range().map(d => color.invertExtent(d)))
+    .enter()
+    .append('rect')
+    .attr('height', 8)
+    .attr('x', d => x(d[0]))
+    .attr('width', d => d[0] && d[1] ? x(d[1]) - x(d[0]) : x(null))
+    .attr('fill', d => color(d[0]));
+
+legend.append('text')
+    .attr('class', 'caption')
+    .attr('x', x.range()[0])
+    .attr('y', -6)
+    .attr('fill', '#000')
+    .attr('text-anchor', 'start')
+    .attr('font-weight', 'bold');
+
+legend.call(
+    d3.axisBottom(x)
+        .tickSize(13)
+        .tickFormat(x => Math.round(x) + '%')
+        .tickValues(color.domain())
+)
+    .select('.domain')
+    .remove();
