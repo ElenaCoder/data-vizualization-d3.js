@@ -42,3 +42,11 @@ const tooltip = body
     .attr('class', 'tooltip')
     .attr('id', 'tooltip')
     .style('opacity', 1);
+
+const path = d3.geoPath();
+
+// Scales and color setup
+const x = d3.scaleLinear().domain([2.6, 75.1]).rangeRound([600, 860]);
+const color = d3.scaleThreshold()
+    .domain(d3.range(2.6, 75.1, (75.1 - 2.6) / 8))
+    .range(d3.schemeGreens[9]);
