@@ -1,3 +1,8 @@
+const EDUCATION_FILE =
+    'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json';
+const COUNTY_FILE =
+    'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json';
+
 const body = d3.select('body');
 
 // Create a container div using D3
@@ -30,3 +35,10 @@ source
         'https://www.ers.usda.gov/data-products/county-level-data-sets/download-data.aspx',
     )
     .text('USDA Economic Research Service');
+
+// Tooltip setup
+const tooltip = body
+    .append('div')
+    .attr('class', 'tooltip')
+    .attr('id', 'tooltip')
+    .style('opacity', 1);

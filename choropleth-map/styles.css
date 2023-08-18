@@ -25,6 +25,18 @@ body {
     padding-top: 1rem;
     flex-direction: column;
     align-items: center;
+    border: 1px solid black; /* TO DELETE */
+}
+
+div.tooltip {
+    position: absolute;
+    padding: 0.7rem;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 204, 0.9);
+    box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
+    border: none;
+    border-radius: 0.2rem;
+    pointer-events: none;
 }
 
 #title {
@@ -35,6 +47,10 @@ body {
     margin: 20px 0;
     text-align: center;
     font-size: 1.3rem;
+}
+
+svg {
+    border: 1px solid black;  /* TO DELETE */
 }
 
 #source {
