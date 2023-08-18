@@ -352,4 +352,52 @@ function callback(data) {
         .append('g')
         .attr('transform', `translate(0,${legendHeight})`)
         .call(legendXAxis);
+
+    svg.append('g')
+        .classed('map', true)
+        .attr(
+            'transform',
+            'translate(' + padding.left + ',' + padding.top + ')',
+        )
+        .selectAll('rect')
+        // Bind data to heatmap cells
+        .data(data.monthlyVariance)
+        .enter()
+        .append('rect')
+        .attr('class', 'cell')
+        // Set data attributes for month, year, and temperature
+        .attr('data-month', (d) => d.month)
+        .attr('data-year', (d) => d.year)
+        .attr('data-temp', (d) => data.baseTemperature + d.variance)
+        // Set x, y, width, and height attributes using scales
+        .attr('x', (d) => xScale(d.year))
+        .attr('y', (d) => yScale(d.month))
+        .attr('width', (d) => xScale.bandwidth(d.year))
+        .attr('height', (d) => yScale.bandwidth(d.month))
+        .attr('fill', (d) => legendThreshold(data.baseTemperature + d.variance))
+        // Add mouseover event listener for tooltip displa
+        .on('mouseover', function (event, d) {
+            // Calculate date from year and month
+            var date = new Date(d.year, d.month);
+            // Generate tooltip content
+            var str =
+                "<span class='date'>" +
+                d3.utcFormat('%Y - %B')(date) +
+                '</span>' +
+                '<br />' +
+                "<span class='temperature'>" +
+                d3.format('.1f')(data.baseTemperature + d.variance) +
+                '&#8451;' +
+                '</span>' +
+                '<br />' +
+                "<span class='variance'>" +
+                d3.format('+.1f')(d.variance) +
+                '&#8451;' +
+                '</span>';
+            // Set tooltip data and show tooltip
+            tooltip.attr('data-year', d.year);
+            tooltip.show(str, this);
+        })
+        // Add mouseout event listener to hide tooltip
+        .on('mouseout', tooltip.hide);
 }
