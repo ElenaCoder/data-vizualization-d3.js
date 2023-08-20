@@ -118,6 +118,9 @@ Promise.all([d3.json(COUNTY_DATA), d3.json(EDUCATION_DATA)])
                 return result ? color(result.bachelorsOrHigher) : color(0);
             })
             .attr('d', path)
+            .on('mouseover', function(event, d) {
+                handleMouseOver(event, d, education); // Pass the education data
+            })
 
         // Create state boundaries
         svg.append('path')
@@ -126,3 +129,13 @@ Promise.all([d3.json(COUNTY_DATA), d3.json(EDUCATION_DATA)])
             .attr('d', path);
     }
 
+function handleMouseOver(event, d, education) {
+    const result = education.find(obj => obj.fips === d.id);
+    if (result) {
+        tooltip.style('opacity', 0.9)
+            .html(() => `${result.area_name}, ${result.state}: ${result.bachelorsOrHigher}%`)
+            .attr('data-education', result.bachelorsOrHigher)
+            .style('left', `${event.pageX + 10}px`)
+            .style('top', `${event.pageY - 28}px`);
+    }
+}
