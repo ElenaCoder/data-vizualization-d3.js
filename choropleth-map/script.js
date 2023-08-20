@@ -50,7 +50,7 @@ const x = d3.scaleLinear().domain([2.6, 75.1]).rangeRound([600, 860]);
 const color = d3
     .scaleThreshold()
     .domain(d3.range(2.6, 75.1, (75.1 - 2.6) / 8))
-    .range(d3.schemeGreens[9]);
+    .range(d3.schemeBlues[8]);
 
 // Legend setup
 const legend = svg
