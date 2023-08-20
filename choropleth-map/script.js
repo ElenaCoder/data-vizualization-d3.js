@@ -41,7 +41,7 @@ const tooltip = body
     .append('div')
     .attr('class', 'tooltip')
     .attr('id', 'tooltip')
-    .style('opacity', 1);
+    .style('opacity', 0);
 
 const path = d3.geoPath();
 
@@ -50,7 +50,7 @@ const x = d3.scaleLinear().domain([2.6, 75.1]).rangeRound([600, 860]);
 const color = d3
     .scaleThreshold()
     .domain(d3.range(2.6, 75.1, (75.1 - 2.6) / 8))
-    .range(d3.schemeBlues[8]);
+    .range(d3.schemeOranges[8]);
 
 // Legend setup
 const legend = svg
