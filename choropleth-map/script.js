@@ -121,6 +121,7 @@ Promise.all([d3.json(COUNTY_DATA), d3.json(EDUCATION_DATA)])
             .on('mouseover', function(event, d) {
                 handleMouseOver(event, d, education); // Pass the education data
             })
+            .on('mouseout', handleMouseOut);
 
         // Create state boundaries
         svg.append('path')
@@ -138,4 +139,9 @@ function handleMouseOver(event, d, education) {
             .style('left', `${event.pageX + 10}px`)
             .style('top', `${event.pageY - 28}px`);
     }
+}
+
+
+function handleMouseOut() {
+    tooltip.style('opacity', 0);
 }
