@@ -47,26 +47,30 @@ const path = d3.geoPath();
 
 // Scales and color setup
 const x = d3.scaleLinear().domain([2.6, 75.1]).rangeRound([600, 860]);
-const color = d3.scaleThreshold()
+const color = d3
+    .scaleThreshold()
     .domain(d3.range(2.6, 75.1, (75.1 - 2.6) / 8))
     .range(d3.schemeGreens[9]);
 
 // Legend setup
-const legend = svg.append('g')
+const legend = svg
+    .append('g')
     .attr('class', 'key')
     .attr('id', 'legend')
     .attr('transform', 'translate(0,40)');
 
-legend.selectAll('rect')
-    .data(color.range().map(d => color.invertExtent(d)))
+legend
+    .selectAll('rect')
+    .data(color.range().map((d) => color.invertExtent(d)))
     .enter()
     .append('rect')
     .attr('height', 8)
-    .attr('x', d => x(d[0]))
-    .attr('width', d => d[0] && d[1] ? x(d[1]) - x(d[0]) : x(null))
-    .attr('fill', d => color(d[0]));
+    .attr('x', (d) => x(d[0]))
+    .attr('width', (d) => (d[0] && d[1] ? x(d[1]) - x(d[0]) : x(null)))
+    .attr('fill', (d) => color(d[0]));
 
-legend.append('text')
+legend
+    .append('text')
     .attr('class', 'caption')
     .attr('x', x.range()[0])
     .attr('y', -6)
@@ -74,73 +78,78 @@ legend.append('text')
     .attr('text-anchor', 'start')
     .attr('font-weight', 'bold');
 
-legend.call(
-    d3.axisBottom(x)
-        .tickSize(13)
-        .tickFormat(x => Math.round(x) + '%')
-        .tickValues(color.domain())
-)
+legend
+    .call(
+        d3
+            .axisBottom(x)
+            .tickSize(13)
+            .tickFormat((x) => Math.round(x) + '%')
+            .tickValues(color.domain()),
+    )
     .select('.domain')
     .remove();
 
 // Load data and create visualization
 Promise.all([d3.json(COUNTY_DATA), d3.json(EDUCATION_DATA)])
-    .then(data => createChoroplethMap(data[0], data[1]))
-    .catch(err => console.log(err));
+    .then((data) => createChoroplethMap(data[0], data[1]))
+    .catch((err) => console.log(err));
 
-    function createChoroplethMap(us, education) {
-        // Counties
-        svg.append('g')
-            .attr('class', 'counties')
-            .selectAll('path')
-            .data(topojson.feature(us, us.objects.counties).features)
-            .enter()
-            .append('path')
-            .attr('class', 'county')
-            .attr('data-fips', (d) => d.id)
-            .attr('data-education', (d) => {
-                const result = education.find((obj) => obj.fips === d.id);
-                return result ? result.bachelorsOrHigher : 0;
-            })
-            .attr('fill', (d) => {
-                const result = education.find((obj) => obj.fips === d.id);
-                return result ? color(result.bachelorsOrHigher) : color(0);
-            })
-            .attr('d', path)
-            .attr('class', 'county')
-            .attr('data-fips', (d) => d.id)
-            .attr('data-education', (d) => {
-                const result = education.find((obj) => obj.fips === d.id);
-                return result ? result.bachelorsOrHigher : 0;
-            })
-            .attr('fill', (d) => {
-                const result = education.find((obj) => obj.fips === d.id);
-                return result ? color(result.bachelorsOrHigher) : color(0);
-            })
-            .attr('d', path)
-            .on('mouseover', function(event, d) {
-                handleMouseOver(event, d, education); // Pass the education data
-            })
-            .on('mouseout', handleMouseOut);
+function createChoroplethMap(us, education) {
+    // Counties
+    svg.append('g')
+        .attr('class', 'counties')
+        .selectAll('path')
+        .data(topojson.feature(us, us.objects.counties).features)
+        .enter()
+        .append('path')
+        .attr('class', 'county')
+        .attr('data-fips', (d) => d.id)
+        .attr('data-education', (d) => {
+            const result = education.find((obj) => obj.fips === d.id);
+            return result ? result.bachelorsOrHigher : 0;
+        })
+        .attr('fill', (d) => {
+            const result = education.find((obj) => obj.fips === d.id);
+            return result ? color(result.bachelorsOrHigher) : color(0);
+        })
+        .attr('d', path)
+        .attr('class', 'county')
+        .attr('data-fips', (d) => d.id)
+        .attr('data-education', (d) => {
+            const result = education.find((obj) => obj.fips === d.id);
+            return result ? result.bachelorsOrHigher : 0;
+        })
+        .attr('fill', (d) => {
+            const result = education.find((obj) => obj.fips === d.id);
+            return result ? color(result.bachelorsOrHigher) : color(0);
+        })
+        .attr('d', path)
+        .on('mouseover', function (event, d) {
+            handleMouseOver(event, d, education); // Pass the education data
+        })
+        .on('mouseout', handleMouseOut);
 
-        // Create state boundaries
-        svg.append('path')
-            .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
-            .attr('class', 'states')
-            .attr('d', path);
-    }
+    // Create state boundaries
+    svg.append('path')
+        .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
+        .attr('class', 'states')
+        .attr('d', path);
+}
 
 function handleMouseOver(event, d, education) {
-    const result = education.find(obj => obj.fips === d.id);
+    const result = education.find((obj) => obj.fips === d.id);
     if (result) {
-        tooltip.style('opacity', 0.9)
-            .html(() => `${result.area_name}, ${result.state}: ${result.bachelorsOrHigher}%`)
+        tooltip
+            .style('opacity', 0.9)
+            .html(
+                () =>
+                    `${result.area_name}, ${result.state}: ${result.bachelorsOrHigher}%`,
+            )
             .attr('data-education', result.bachelorsOrHigher)
             .style('left', `${event.pageX + 10}px`)
             .style('top', `${event.pageY - 28}px`);
     }
 }
-
 
 function handleMouseOut() {
     tooltip.style('opacity', 0);
