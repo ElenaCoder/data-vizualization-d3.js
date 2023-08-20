@@ -88,4 +88,30 @@ Promise.all([d3.json(COUNTY_DATA), d3.json(EDUCATION_DATA)])
     .then(data => createChoroplethMap(data[0], data[1]))
     .catch(err => console.log(err));
 
-function createChoroplethMap(us, education) {}
+    function createChoroplethMap(us, education) {
+        // Counties
+        svg.append('g')
+            .attr('class', 'counties')
+            .selectAll('path')
+            .data(topojson.feature(us, us.objects.counties).features)
+            .enter()
+            .append('path')
+            .attr('class', 'county')
+            .attr('data-fips', (d) => d.id)
+            .attr('data-education', (d) => {
+                const result = education.find((obj) => obj.fips === d.id);
+                return result ? result.bachelorsOrHigher : 0;
+            })
+            .attr('fill', (d) => {
+                const result = education.find((obj) => obj.fips === d.id);
+                return result ? color(result.bachelorsOrHigher) : color(0);
+            })
+            .attr('d', path)
+
+        // Create state boundaries
+        svg.append('path')
+            .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
+            .attr('class', 'states')
+            .attr('d', path);
+    }
+
