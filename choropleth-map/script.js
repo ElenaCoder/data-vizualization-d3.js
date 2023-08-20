@@ -107,6 +107,17 @@ Promise.all([d3.json(COUNTY_DATA), d3.json(EDUCATION_DATA)])
                 return result ? color(result.bachelorsOrHigher) : color(0);
             })
             .attr('d', path)
+            .attr('class', 'county')
+            .attr('data-fips', (d) => d.id)
+            .attr('data-education', (d) => {
+                const result = education.find((obj) => obj.fips === d.id);
+                return result ? result.bachelorsOrHigher : 0;
+            })
+            .attr('fill', (d) => {
+                const result = education.find((obj) => obj.fips === d.id);
+                return result ? color(result.bachelorsOrHigher) : color(0);
+            })
+            .attr('d', path)
 
         // Create state boundaries
         svg.append('path')
