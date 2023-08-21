@@ -78,6 +78,13 @@ const color = d3.scaleOrdinal(d3.schemeSet3.map(fader));
 // Define the treemap layout with size and padding
 const treemap = d3.treemap().size([width, height]).paddingInner(1);
 
+// Load data and create visualization
+d3.json(DATASET.FILE_PATH)
+    .then(createVisualization)
+    .catch((err) => console.log(err));
+
+function createVisualization(data) {}
+
 function fader(color) {
     return d3.interpolateRgb(color, '#fff')(0.2);
 }
