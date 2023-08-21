@@ -60,3 +60,15 @@ const DATASET = DATASETS[urlParams.get('data') || DEFAULT_DATASET];
 document.getElementById('title').innerHTML = DATASET.TITLE;
 document.getElementById('description').innerHTML = DATASET.DESCRIPTION;
 
+// Select DOM elements
+const body = d3.select('body');
+const svg = d3.select('#tree-map');
+const width = Number(svg.attr('width'));
+const height = Number(svg.attr('height'));
+const legend = d3.select('#legend');
+const tooltip = body
+    .append('div')
+    .attr('class', 'tooltip')
+    .attr('id', 'tooltip')
+    .style('opacity', 0);
+
