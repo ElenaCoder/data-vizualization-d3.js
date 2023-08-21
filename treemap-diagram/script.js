@@ -75,6 +75,9 @@ const tooltip = body
 // Define color scale using d3's scaleOrdinal and a custom color scheme
 const color = d3.scaleOrdinal(d3.schemeSet3.map(fader));
 
+// Define the treemap layout with size and padding
+const treemap = d3.treemap().size([width, height]).paddingInner(1);
+
 function fader(color) {
     return d3.interpolateRgb(color, '#fff')(0.2);
 }
