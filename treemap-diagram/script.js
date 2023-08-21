@@ -72,3 +72,9 @@ const tooltip = body
     .attr('id', 'tooltip')
     .style('opacity', 0);
 
+// Define color scale using d3's scaleOrdinal and a custom color scheme
+const color = d3.scaleOrdinal(d3.schemeSet3.map(fader));
+
+function fader(color) {
+    return d3.interpolateRgb(color, '#fff')(0.2);
+}
