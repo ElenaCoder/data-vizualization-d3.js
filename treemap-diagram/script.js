@@ -26,6 +26,9 @@ var urlParams = new URLSearchParams(window.location.search);
 const DEFAULT_DATASET = 'videogames';
 const DATASET = DATASETS[urlParams.get('data') || DEFAULT_DATASET];
 
+// Set the title and description based on the selected dataset
+document.getElementById('title').innerHTML = DATASET.TITLE;
+document.getElementById('description').innerHTML = DATASET.DESCRIPTION;
 
 // Create links
 d3.select('body')
@@ -42,7 +45,7 @@ d3.select('body')
     .style('margin-right', '10px');
 
 // Create h1 title
-d3.select('body').append('h1').attr('id', 'title').text('Video Game Sales');
+d3.select('body').append('h1').attr('id', 'title');
 
 // Create description div
 d3.select('body').append('div').attr('id', 'description');
