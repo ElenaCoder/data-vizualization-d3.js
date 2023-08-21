@@ -21,15 +21,6 @@ const DATASETS = {
     },
 };
 
-// Get dataset parameter from URL or use the default
-var urlParams = new URLSearchParams(window.location.search);
-const DEFAULT_DATASET = 'videogames';
-const DATASET = DATASETS[urlParams.get('data') || DEFAULT_DATASET];
-
-// Set the title and description based on the selected dataset
-document.getElementById('title').innerHTML = DATASET.TITLE;
-document.getElementById('description').innerHTML = DATASET.DESCRIPTION;
-
 // Create links
 d3.select('body')
     .selectAll('a')
@@ -59,3 +50,13 @@ d3.select('body')
 
 // Create legend SVG
 d3.select('body').append('svg').attr('id', 'legend').attr('width', 500);
+
+// Get dataset parameter from URL or use the default
+var urlParams = new URLSearchParams(window.location.search);
+const DEFAULT_DATASET = 'videogameSales';
+const DATASET = DATASETS[urlParams.get('data') || DEFAULT_DATASET];
+
+// Set the title and description based on the selected dataset
+document.getElementById('title').innerHTML = DATASET.TITLE;
+document.getElementById('description').innerHTML = DATASET.DESCRIPTION;
+
