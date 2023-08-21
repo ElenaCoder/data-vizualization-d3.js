@@ -19,6 +19,7 @@ body {
     background-color: #F4F2DE;
     /* display: flex; */
     margin-top: 40px;
+    display: flex;
 }
 
 div.tooltip {
@@ -36,6 +37,7 @@ svg {
     border-radius: 10px;
     border: 7px solid black;
     box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.2);
+    align-items: center;
 }
 
 .graph {
