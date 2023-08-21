@@ -21,6 +21,12 @@ const DATASETS = {
     },
 };
 
+// Get dataset parameter from URL or use the default
+var urlParams = new URLSearchParams(window.location.search);
+const DEFAULT_DATASET = 'videogames';
+const DATASET = DATASETS[urlParams.get('data') || DEFAULT_DATASET];
+
+
 // Create links
 d3.select('body')
     .selectAll('a')
