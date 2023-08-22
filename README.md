@@ -14,6 +14,10 @@ This repository contains my solutions to the projects from the Data Visualizatio
 - JavaScript
 - D3.js
 
+## Course Showcase
+
+Explore all of the Data Visualization course projects in action on the [Showcase Site](https://elenacoder.github.io/data-vizualization-d3.js/).
+
 ## Project demos
 
 The following projects are included in this repository:
