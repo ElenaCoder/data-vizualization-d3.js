@@ -3,7 +3,7 @@
 
 ## Data Visualization Course
 
-Welcome to the **Data Visualization Course** repository! The course is designed to teach the fundamentals of data visualization using various tools and libraries. Each project is carefully crafted to provide practical experience in creating effective visualizations from different datasets.
+Welcome to the [**Data Visualization Course**](https://www.freecodecamp.org/learn/data-visualization/) repository! The course is designed to teach the fundamentals of data visualization using various tools and libraries. Each project is carefully crafted to provide practical experience in creating effective visualizations from different datasets.
 This repository contains my solutions to the projects from the Data Visualization course. Throughout the course, I've created visualizations to enhance my data visualization skills.
 
 
