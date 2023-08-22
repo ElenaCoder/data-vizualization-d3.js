@@ -95,6 +95,15 @@ function createVisualization(data) {
 
     // Apply treemap layout to the hierarchy
     treemap(root);
+
+    // Create a group for each cell in the treemap
+    const cell = svg
+        .selectAll('g')
+        .data(root.leaves())
+        .enter()
+        .append('g')
+        .attr('class', 'group')
+        .attr('transform', (d) => `translate(${d.x0},${d.y0})`);
 }
 
 function fader(color) {
