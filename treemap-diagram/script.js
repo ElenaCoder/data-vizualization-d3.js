@@ -131,6 +131,13 @@ function createVisualization(data) {
         .attr('x', 4)
         .attr('y', (d, i) => 13 + i * 10)
         .text((d) => d);
+
+    // Extract unique categories from the data
+    const categoriesSet = new Set(
+        root.leaves().map((nodes) => nodes.data.category),
+    );
+    // Convert the Set back to an array
+    const categories = [...categoriesSet];
 }
 
 function fader(color) {
