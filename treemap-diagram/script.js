@@ -92,6 +92,9 @@ function createVisualization(data) {
         })
         .sum(sumBySize)
         .sort((a, b) => b.height - a.height || b.value - a.value);
+
+    // Apply treemap layout to the hierarchy
+    treemap(root);
 }
 
 function fader(color) {
