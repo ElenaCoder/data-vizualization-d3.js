@@ -178,6 +178,15 @@ function createVisualization(data) {
         .attr('fill', function (d) {
             return color(d);
         });
+
+    // Append text labels for legend items
+    legendElem
+        .append('text')
+        .attr('x', LEGEND_RECT_SIZE + LEGEND_TEXT_X_OFFSET)
+        .attr('y', LEGEND_RECT_SIZE + LEGEND_TEXT_Y_OFFSET)
+        .text(function (d) {
+            return d;
+        });
 }
 
 function fader(color) {
