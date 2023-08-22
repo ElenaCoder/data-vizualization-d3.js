@@ -117,6 +117,20 @@ function createVisualization(data) {
         .attr('fill', (d) => color(d.data.category))
         .on('mousemove', handleMousemove)
         .on('mouseout', handleMouseout);
+
+    // Append text labels for each cell
+    cell.append('text')
+        .attr('class', 'tile-text')
+        .selectAll('tspan')
+        .data(function (d) {
+            // Splitting text into multiple lines
+            return d.data.name.split(/(?=[A-Z][^A-Z])/g);
+        })
+        .enter()
+        .append('tspan')
+        .attr('x', 4)
+        .attr('y', (d, i) => 13 + i * 10)
+        .text((d) => d);
 }
 
 function fader(color) {
