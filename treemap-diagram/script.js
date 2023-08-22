@@ -168,6 +168,16 @@ function createVisualization(data) {
                 ')'
             );
         });
+
+    // Append colored rectangles to represent categories in the legend
+    legendElem
+        .append('rect')
+        .attr('width', LEGEND_RECT_SIZE)
+        .attr('height', LEGEND_RECT_SIZE)
+        .attr('class', 'legend-item')
+        .attr('fill', function (d) {
+            return color(d);
+        });
 }
 
 function fader(color) {
