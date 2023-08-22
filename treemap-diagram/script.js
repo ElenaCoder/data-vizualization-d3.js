@@ -189,6 +189,7 @@ function createVisualization(data) {
         });
 }
 
+// Helper functions
 function fader(color) {
     return d3.interpolateRgb(color, '#fff')(0.2);
 }
@@ -206,4 +207,8 @@ function handleMousemove(event, d) {
         .attr('data-value', d.data.value)
         .style('left', `${event.pageX + 10}px`)
         .style('top', `${event.pageY - 28}px`);
+}
+
+function handleMouseout() {
+    tooltip.style('opacity', 0);
 }
