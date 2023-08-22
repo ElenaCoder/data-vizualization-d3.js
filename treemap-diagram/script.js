@@ -104,6 +104,19 @@ function createVisualization(data) {
         .append('g')
         .attr('class', 'group')
         .attr('transform', (d) => `translate(${d.x0},${d.y0})`);
+
+    // Append a rectangle for each cell
+    cell.append('rect')
+        .attr('id', (d) => d.data.id)
+        .attr('class', 'tile')
+        .attr('width', (d) => d.x1 - d.x0)
+        .attr('height', (d) => d.y1 - d.y0)
+        .attr('data-name', (d) => d.data.name)
+        .attr('data-category', (d) => d.data.category)
+        .attr('data-value', (d) => d.data.value)
+        .attr('fill', (d) => color(d.data.category))
+        .on('mousemove', handleMousemove)
+        .on('mouseout', handleMouseout);
 }
 
 function fader(color) {
