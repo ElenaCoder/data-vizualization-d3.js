@@ -138,6 +138,36 @@ function createVisualization(data) {
     );
     // Convert the Set back to an array
     const categories = [...categoriesSet];
+
+    // Create the legend
+    const legend = d3.select('#legend');
+    const legendWidth = +legend.attr('width');
+    const LEGEND_OFFSET = 10;
+    const LEGEND_RECT_SIZE = 15;
+    const LEGEND_H_SPACING = 150;
+    const LEGEND_V_SPACING = 10;
+    const LEGEND_TEXT_X_OFFSET = 3;
+    const LEGEND_TEXT_Y_OFFSET = -2;
+    const legendElemsPerRow = Math.floor(legendWidth / LEGEND_H_SPACING);
+
+    // Create legend elements for each category
+    const legendElem = legend
+        .append('g')
+        .attr('transform', 'translate(60,' + LEGEND_OFFSET + ')')
+        .selectAll('g')
+        .data(categories)
+        .enter()
+        .append('g')
+        .attr('transform', function (d, i) {
+            return (
+                'translate(' +
+                (i % legendElemsPerRow) * LEGEND_H_SPACING +
+                ',' +
+                (Math.floor(i / legendElemsPerRow) * LEGEND_RECT_SIZE +
+                    LEGEND_V_SPACING * Math.floor(i / legendElemsPerRow)) +
+                ')'
+            );
+        });
 }
 
 function fader(color) {
