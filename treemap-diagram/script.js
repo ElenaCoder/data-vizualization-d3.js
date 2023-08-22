@@ -83,7 +83,16 @@ d3.json(DATASET.FILE_PATH)
     .then(createVisualization)
     .catch((err) => console.log(err));
 
-function createVisualization(data) {}
+function createVisualization(data) {
+    // Constructing the hierarchy of the data for treemap layout
+    const root = d3
+        .hierarchy(data)
+        .eachBefore((d) => {
+            d.data.id = (d.parent ? d.parent.data.id + '.' : '') + d.data.name;
+        })
+        .sum(sumBySize)
+        .sort((a, b) => b.height - a.height || b.value - a.value);
+}
 
 function fader(color) {
     return d3.interpolateRgb(color, '#fff')(0.2);
