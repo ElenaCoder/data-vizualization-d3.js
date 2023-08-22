@@ -143,3 +143,7 @@ function createVisualization(data) {
 function fader(color) {
     return d3.interpolateRgb(color, '#fff')(0.2);
 }
+
+function sumBySize(d) {
+    return d.value;
+}
