@@ -196,3 +196,14 @@ function fader(color) {
 function sumBySize(d) {
     return d.value;
 }
+
+function handleMousemove(event, d) {
+    tooltip
+        .style('opacity', 0.9)
+        .html(
+            `Name: ${d.data.name}<br>Category: ${d.data.category}<br>Value: ${d.data.value}`,
+        )
+        .attr('data-value', d.data.value)
+        .style('left', `${event.pageX + 10}px`)
+        .style('top', `${event.pageY - 28}px`);
+}
